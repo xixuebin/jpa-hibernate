@@ -14,11 +14,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringBootApplication
 public class JpaHibernateApplication implements CommandLineRunner {
 
-  @Autowired
-  private TagRepository tagRepository;
+  private final TagRepository tagRepository;
+
+  private final PostRepository postRepository;
 
   @Autowired
-  private PostRepository postRepository;
+  public JpaHibernateApplication(PostRepository postRepository, TagRepository tagRepository) {
+    this.postRepository = postRepository;
+    this.tagRepository = tagRepository;
+  }
 
   public static void main(String[] args) {
     SpringApplication.run(JpaHibernateApplication.class, args);
